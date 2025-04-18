@@ -29,9 +29,9 @@ def bar_graph():
     age_counts = df['age'].value_counts().sort_index()
 
     bars = plt.bar(age_counts.index, age_counts.values, color='skyblue', edgecolor='black')
-    plt.xlabel('Age')
-    plt.ylabel('Number of Students')
-    plt.title('Number of Students by Age')
+    plt.xlabel('Age', fontsize=9)
+    plt.ylabel('Number of Students', fontsize=9)
+    plt.title('Number of Students by Age', fontsize=12)
 
     #Label bars
     for bar in bars:
@@ -53,9 +53,9 @@ def line_graph():
     avg_grade_by_age = df.groupby('age')['G3'].mean()
 
     plt.plot(avg_grade_by_age.index, avg_grade_by_age.values, marker='o', color='orange', linestyle='-')
-    plt.xlabel('Age')
-    plt.ylabel('Average Final Grade (G3)')
-    plt.title('Average G3 Final Grade by Age')
+    plt.xlabel('Age', fontsize=9)
+    plt.ylabel('Average Final Grade (G3)' , fontsize=9)
+    plt.title('Average Final Grade by Age', fontsize=12)
 
     #Label points
     for x, y in zip(avg_grade_by_age.index, avg_grade_by_age.values):
@@ -76,7 +76,7 @@ def pie_chart():
     df = pd.read_csv('student-mat.csv', sep=';')#open the dataset
     reason_counts = df['reason'].value_counts()
     plt.pie(reason_counts, labels=reason_counts.index, autopct='%1.1f%%')
-    plt.title('Reasons for Choosing the School')
+    plt.title('Reasons for Choosing the School', fontsize=12)
 
     #cell text
     plt.text(-1.8, -1.3, "This pie chart breaks down why students chose this school.\n"
@@ -98,8 +98,8 @@ def box_chart():
                 whiskerprops=dict(color='black'),
                 capprops=dict(color='black'))
 
-    plt.ylabel('Grades')
-    plt.title('Distribution of Grades (G1, G2, G3)')
+    plt.ylabel('Grades', fontsize=12)
+    plt.title('Distribution of Grades (G1, G2, G3)', fontsize=12)
     plt.grid(True, axis='y', linestyle='--', alpha=0.5) #grid lines for y-axis
 
     #cell text
