@@ -1,17 +1,15 @@
-#lab1.py
-#visualizing Real Data Sets using Matplotlib
+#lab2.py
+#visualizing Real Data Sets using Seaborn
 
 #Data files:
-#student-mat.csv - student performance in mathematics
+#car.data - car evaluation data set
 
 import matplotlib.pyplot as plt
 import pandas as pd
 
 #explain the data
 def explain_data():
-    print("This dataset mesures Portuguese student achievement in secondary education.\n"
-          "The data attributes include student grades, demographic, social, and school related information.\n "
-          "Of the two datasets provided, I am only focusing on using the Mathematics dataset for this lab.\n"
+    print("\n"
           "Sourced from UCI Machine Learning Repository\n"
           )
 
@@ -19,7 +17,8 @@ def explain_data():
 #Print a portion of the raw data using head()
 def print_data_head():
     #read the dataset
-    df = pd.read_csv('student-mat.csv', sep=';')#open the dataset
+
+    df = pd.read_csv('car.data', delimiter=';')#open the dataset
     print(df.head()) #print the head
 
 
@@ -49,7 +48,7 @@ def bar_graph():
 
 #Line Graph Visualization
 def line_graph():
-    df = pd.read_csv('student-mat.csv', sep=';') #open the dataset
+    df = pd.read_csv('student-mat.', sep=';') #open the dataset
     avg_grade_by_age = df.groupby('age')['G3'].mean()
 
     plt.plot(avg_grade_by_age.index, avg_grade_by_age.values, marker='o', color='orange', linestyle='-')
