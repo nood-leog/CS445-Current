@@ -89,19 +89,28 @@ def boxplot_limiteducation():
     plt.ylabel('Credit Limit', fontsize=12)
     plt.xticks(rotation=30)
     plt.tight_layout()
-    plt.savefig('boyce-boxplot-education-limit.png')
+    plt.savefig('boyce-boxplot-limiteducation.png')
     plt.show()
 
 
-#seaborn barplot
 def barplot():
-    df['LIMIT_BIN'] = pd.cut(df['LIMIT_BAL'], bins=5)
+    # Define custom rounded bins
+    bins = [0, 50000, 100000, 150000, 200000, 250000, 300000, 350000, 400000, 450000, 500000, df['LIMIT_BAL'].max()]
+    labels = ['0–50k', '50k–100k', '100k–150k', '150k–200k', '200k-250k', '250k-300k', '300k-350k', '350k-400k', '400k-450k', '450k-500k', '500k+']
+
+    # Create the bin column
+    df['LIMIT_BIN'] = pd.cut(df['LIMIT_BAL'], bins=bins, labels=labels, include_lowest=True)
+
+    # Calculate the mean default rate per bin
+    grouped = df.groupby('LIMIT_BIN')['default payment next month'].mean().reset_index()
+
     plt.figure(figsize=(12, 6))
-    sea.barplot(x='LIMIT_BIN', y='default payment next month', data=df)
-    plt.title('Default Rate by Credit Limit Bracket')
-    plt.xlabel('Credit Limit Bins')
-    plt.ylabel('Default Rate')
-    plt.xticks(rotation=45)
+    sea.barplot(x='LIMIT_BIN', y='default payment next month', data=grouped, palette='coolwarm')
+
+    plt.title('Average Default Rate by Credit Limit Bracket', fontsize=14)
+    plt.xlabel('Credit Limit Bracket', fontsize=12)
+    plt.ylabel('Default Rate (Proportion)', fontsize=12)
+    plt.ylim(0, 1)
     plt.tight_layout()
     plt.savefig('boyce-bargraph.png')
     plt.show()
