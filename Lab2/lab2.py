@@ -5,33 +5,16 @@
 
 
 #Data files:
-#car.data - car evaluation data set
-
-#buying	Feature	Categorical	buying price
-#maint	Feature	Categorical	price of the maintenance
-#doors	Feature	Categorical	number of doors
-#persons Feature Categorical capacity in terms of persons to carry
-#lug_boot Feature Categorical the size of luggage boot
-#safety	Feature	Categorical	estimated safety of the car
-#class	Target	Categorical	evaluation level (unacceptable, acceptable, good, very good)
-
-#buying:   vhigh, high, med, low.
-#maint:    vhigh, high, med, low.
-#doors:    2, 3, 4, 5more.
-#persons:  2, 4, more.
-#lug_boot: small, med, big.
-#safety:   low, med, high.
-#class: unacc, acc, good, vgood
-
-
+#default of credit card clients.csv
+#https://archive.ics.uci.edu/dataset/350/default+of+credit+card+clients
 
 
 import matplotlib.pyplot as plt
 import pandas as pd
-import seaborn as sns
+import seaborn as sea
 
 #global dataset variable
-df = pd.read_csv('car.data', delimiter=';')  # open the dataset
+df = pd.read_csv('default of credit card clients.csv', delimiter=';')  # open the dataset
 
 
 
@@ -46,6 +29,8 @@ def explain_data():
 def print_data_head():
     #read the dataset
     print(df.head()) #print the head
+
+#seaborn
 
 
 explain_data()
