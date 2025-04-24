@@ -66,11 +66,11 @@ def bar_creditbyage():
     plt.savefig('boyce-bar-creditbyage.png')
     plt.show()
 
-#boxplot with credit limit-y and education-x
+#boxplot with credit limit-y and education-x --- #3
 def boxplot_limiteducation():
     plt.figure(figsize=(10, 6))
 
-    # Map education codes to readable labels
+    #map education codes to readable labels
     edu_labels = {
         1: 'Graduate School',
         2: 'University',
@@ -92,11 +92,11 @@ def boxplot_limiteducation():
     plt.savefig('boyce-boxplot-limiteducation.png')
     plt.show()
 
-
-def barplot():
-    # Define custom rounded bins
-    bins = [0, 50000, 100000, 150000, 200000, 250000, 300000, 350000, 400000, 450000, 500000, df['LIMIT_BAL'].max()]
-    labels = ['0–50k', '50k–100k', '100k–150k', '150k–200k', '200k-250k', '250k-300k', '300k-350k', '350k-400k', '400k-450k', '450k-500k', '500k+']
+#barplot for credit limit-x and average default rate-y --- 4
+def barplot_DefaultRate():
+    #rounded bins
+    bins = [0, 50000, 100000, 150000, 200000, 250000, 300000, 350000, 400000, 450000, 500000, 550000, 600000, 650000, 700000, 750000, df['LIMIT_BAL'].max()]
+    labels = ['0–50k', '50k–100k', '100k–150k', '150k–200k', '200k-250k', '250k-300k', '300k-350k', '350k-400k', '400k-450k', '450k-500k', '500k-550k', '550k-600k', '600k-650k', '650k-700k', '700k-750k', '750k+']
 
     # Create the bin column
     df['LIMIT_BIN'] = pd.cut(df['LIMIT_BAL'], bins=bins, labels=labels, include_lowest=True)
@@ -112,7 +112,7 @@ def barplot():
     plt.ylabel('Default Rate (Proportion)', fontsize=12)
     plt.ylim(0, 1)
     plt.tight_layout()
-    plt.savefig('boyce-bargraph.png')
+    plt.savefig('boyce-bargraph-defaultrate.png')
     plt.show()
 
 
@@ -123,5 +123,4 @@ print_data_head()
 heatmap_correlations() #1
 bar_creditbyage() #2
 boxplot_limiteducation() #3
-
-barplot() #TODO finish this
+barplot_DefaultRate() #4
