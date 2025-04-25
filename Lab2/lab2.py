@@ -13,6 +13,11 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sea
 
+#ignore future warnings lol
+import warnings
+warnings.filterwarnings('ignore', category=FutureWarning)
+
+
 #global dataset variable
 df = pd.read_csv('default of credit card clients.csv', skiprows=1)
 
@@ -20,6 +25,10 @@ df = pd.read_csv('default of credit card clients.csv', skiprows=1)
 #explain the data
 def explain_data():
     print("\n"
+            "This dataset contains information about credit card holders in Taiwan.\n"
+            "It includes some basic demographic information, like sex, age, education level, marital status and also includes\n"
+          " payment history, and default status.\n"
+          
           "Sourced from UCI Machine Learning Repository\n"
           )
 
@@ -44,7 +53,7 @@ def heatmap_correlations():
     sea.heatmap(correlation_matrix, annot=True, fmt='.2f', cmap='coolwarm', square=True, linewidths=.5)
 
     #plot
-    plt.title('Correlation Heatmap of Credit Default Dataset')
+    plt.title('Correlation Heatmap of Credit Default Dataset', fontsize=16)
     plt.tight_layout()
     plt.savefig('boyce-heatmap-correlations.png')
     plt.show()
@@ -53,7 +62,7 @@ def heatmap_correlations():
 def bar_creditbyage():
     plt.figure(figsize=(12, 6))
     sea.barplot(x='AGE', y='LIMIT_BAL', data=df, palette= 'viridis')
-    plt.title('Average Credit Limit by Age')
+    plt.title('Average Credit Limit by Age', fontsize=14)
     plt.xlabel('Age')
     plt.ylabel('Average Credit Limit')
     plt.xticks(rotation=45)
@@ -122,12 +131,12 @@ def pairplot_financial():
     features = ['LIMIT_BAL', 'TOTAL_BILLS', 'TOTAL_PAYMENTS', 'AGE', 'default payment next month']
     pair_df = df[features].copy()
 
-    #rename the target column for better label
+    #rename column from the dataset to something more readable
     pair_df.rename(columns={'default payment next month': 'Default'}, inplace=True)
 
     #plot
     sea.pairplot(pair_df, hue='Default', palette='coolwarm', diag_kind='kde', corner=True)
-    plt.suptitle('Pairplot of Financial Metrics', fontsize=16, y=1.02)
+    plt.title('Pairplot of Financial Metrics', fontsize=16, y=3.5)
     plt.savefig('boyce-pairplot-financial.png')
     plt.show()
 
