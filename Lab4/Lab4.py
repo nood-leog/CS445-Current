@@ -85,7 +85,8 @@ def geoMap():
     fig.savefig('Boyce_geoMap.png')     # save the map as a png file
     print("geoMap Generated")
 
-
+#Land Area per State Bar Chart
+#barchart showing total land area per state
 def landArea():
     #convert to square kilometers
     state_land = geoData.groupby('STATE_NAME')['ALAND'].sum() / 1e6
@@ -105,7 +106,8 @@ def landArea():
     plt.show()
     print("Total Land Area per State")
 
-
+#Top 10 States by Water Area
+#barchart showing states with the most water
 def top10water():
     #convert to square kilometers
     state_water = geoData.groupby('STATE_NAME')['AWATER'].sum() / 1e6
@@ -124,6 +126,7 @@ def top10water():
     print("Top 10 States by Water Area")
 
 
+#Vowel Count per State Name
 #barchart showing states with the most vowels
 def vowel_count():
 
@@ -155,10 +158,11 @@ def vowel_count():
     #save the plot as a png file
     plt.savefig('Boyce_vowel_counts.png')
     plt.show()
-    print("Chart: States by Vowel Count")
+    print("States by Vowel Count")
 
 
-
+#Most Common Starting Letters in State Names
+#barchart showing the most common starting letters in state names
 def starting_letters():
     #get the first letter of each unique state name
     initials = geoData['STATE_NAME'].drop_duplicates().str[0].str.upper()
@@ -178,10 +182,11 @@ def starting_letters():
     #save the plot as a png file
     plt.savefig('Boyce_letters.png')
     plt.show()
-    print("Chart: Most Common Starting Letters")
+    print("Most Common Starting Letters")
 
 
-
+#Land vs. Water Area by State
+#barchart showing land vs. water area by state
 def land_vs_water():
     import numpy as np
 
@@ -210,7 +215,7 @@ def land_vs_water():
     #save the plot as a png file
     plt.savefig('Boyce_land_vs_water.png')
     plt.show()
-    print("Chart: Land vs. Water Area by State")
+    print("Land vs. Water Area by State")
 
 
 
